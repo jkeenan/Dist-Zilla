@@ -5,6 +5,7 @@ use utf8;
 
 use autodie;
 use Test::DZil;
+use Data::Dump qw(dd pp);
 
 #my $tzil = Builder->from_config(
 #  { dist_root => 'corpus/dist/DZT' },
@@ -46,18 +47,19 @@ note("Starting 'corpus/dist/DZ-NonAscii' block");
   );
 
   pass("No exception up until now");
+#  dd($tzil);
 
   $tzil->build;
 
   pass("If you can read this, we got past location of exception");
 
-#  my $contents = $tzil->slurp_file('build/README');
-#
-#  like(
-#    $contents,
-#    qr{ภูมิพลอดุลยเดช},
-#    "HRH unmangled in README",
-#  );
+  my $contents = $tzil->slurp_file('build/README');
+
+  like(
+    $contents,
+    qr{ภูมิพลอดุลยเดช},
+    "HRH unmangled in README",
+  );
 }
 
 done_testing;
