@@ -33,6 +33,8 @@ sub from_config {
   # determinable time zone, we'll switch to not-local times for testing.
   # -- rjbs, 2015-11-26
   local $Dist::Zilla::Plugin::NextRelease::DEFAULT_TIME_ZONE = 'GMT';
+  #local $Dist::Zilla::Plugin::Readme::DEFAULT_TIME_ZONE = 'GMT';
+  #local $Dist::Zilla::Plugin::License::DEFAULT_TIME_ZONE = 'GMT';
 
   return $self->builder->from_config(@arg);
 }

@@ -8,6 +8,9 @@ use Test::Fatal;
 use Data::Dump qw(dd pp);
 
 local $ENV{TZ} = 'America/New_York';
+#local $ENV{TZ} = 'UTC';
+#local $ENV{TZ} = 'GMT';
+#local $ENV{TZ} = 'America/Chicago';
 
 my $changes = <<'END_CHANGES';
 Revision history for {{$dist->name}}
@@ -335,11 +338,13 @@ END_CHANGES
   );
 
   pass("No exception up until now");
-  dd($tzil);
+  #dd($tzil);
 
   $tzil->build;
 
   pass("If you can read this, we got past location of exception");
+  #dd($tzil);
+  pp( [ $tzil->{files} ] );
 
   like(
     $tzil->slurp_file('build/Changes'),
